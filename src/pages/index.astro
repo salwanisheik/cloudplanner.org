@@ -1,0 +1,218 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "cloudplanner.org",
+  "url": "https://cloudplanner.org",
+  "description": "Free FinOps guides, cloud cost calculators, and tool comparisons to help engineering teams reduce cloud spend.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://cloudplanner.org/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+};
+
+const features = [
+  {
+    icon: '📊',
+    title: 'FinOps Guides',
+    desc: 'Practical guides on cloud cost optimisation, FinOps frameworks, and KPIs.',
+    href: '/finops/',
+  },
+  {
+    icon: '🧮',
+    title: 'Cost Calculators',
+    desc: 'Interactive calculators for AWS, Azure, and GCP reserved instance savings.',
+    href: '/calculators/',
+  },
+  {
+    icon: '⚖️',
+    title: 'Tool Comparisons',
+    desc: 'Side-by-side comparisons of FinOps platforms, tools, and cloud providers.',
+    href: '/comparisons/',
+  },
+  {
+    icon: '📐',
+    title: 'Architecture Templates',
+    desc: 'Downloadable cloud cost governance templates and tagging policy frameworks.',
+    href: '/templates/',
+  },
+];
+---
+
+<BaseLayout
+  title="cloudplanner.org — FinOps Guides, Cloud Cost Calculators & Tools"
+  description="Free FinOps guides, cloud cost calculators, and tool comparisons to help engineering teams reduce cloud spend. No sign-up required."
+  schema={schema}
+>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="hero-badge">FinOps · Cloud Cost · DevOps</div>
+      <h1 class="hero-title">
+        Reduce your cloud bill.<br />
+        <span class="hero-accent">Without the guesswork.</span>
+      </h1>
+      <p class="hero-desc">
+        Free FinOps guides, interactive calculators, and tool comparisons —
+        everything engineering teams need to manage and reduce cloud spend.
+      </p>
+      <div class="hero-cta-row">
+        <a href="/finops/" class="btn btn-primary">Browse FinOps guides →</a>
+        <a href="/calculators/aws-cost-calculator/" class="btn btn-secondary">Try the AWS calculator</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features grid -->
+  <section class="features">
+    <div class="container">
+      <div class="features-grid">
+        {features.map(f => (
+          <a href={f.href} class="feature-card">
+            <div class="feature-icon">{f.icon}</div>
+            <div class="feature-title">{f.title}</div>
+            <div class="feature-desc">{f.desc}</div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Social proof strip -->
+  <section class="stats">
+    <div class="container stats-inner">
+      <div class="stat"><div class="stat-num">84</div><div class="stat-label">keywords tracked</div></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><div class="stat-num">156</div><div class="stat-label">programmatic pages</div></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><div class="stat-num">$6–32</div><div class="stat-label">CPC range — high-value niche</div></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><div class="stat-num">Free</div><div class="stat-label">always, no sign-up</div></div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* Hero */
+  .hero {
+    padding: 5rem 0 4rem;
+    background: linear-gradient(to bottom, #f0f7ff, var(--color-bg));
+    text-align: center;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-brand);
+    background: #e8f2ff;
+    padding: 0.35rem 0.85rem;
+    border-radius: 20px;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 5vw, 3.25rem);
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--color-text);
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-accent { color: var(--color-brand); }
+
+  .hero-desc {
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
+    max-width: 540px;
+    margin: 0 auto 2rem;
+    line-height: 1.6;
+  }
+
+  .hero-cta-row {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    padding: 0.65rem 1.5rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.15s;
+  }
+
+  .btn-primary {
+    background: var(--color-brand);
+    color: #fff;
+  }
+
+  .btn-primary:hover { background: var(--color-brand-dark); text-decoration: none; }
+
+  .btn-secondary {
+    background: #fff;
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+  }
+
+  .btn-secondary:hover { background: var(--color-bg-subtle); text-decoration: none; }
+
+  /* Features */
+  .features { padding: 4rem 0; }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+
+  .feature-card {
+    padding: 1.5rem;
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    text-decoration: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    display: block;
+  }
+
+  .feature-card:hover {
+    border-color: var(--color-brand);
+    box-shadow: 0 4px 16px rgba(55, 138, 221, 0.12);
+    text-decoration: none;
+  }
+
+  .feature-icon { font-size: 1.75rem; margin-bottom: 0.75rem; }
+  .feature-title { font-size: 1rem; font-weight: 600; color: var(--color-text); margin-bottom: 0.4rem; }
+  .feature-desc { font-size: 0.875rem; color: var(--color-text-muted); line-height: 1.5; }
+
+  /* Stats */
+  .stats {
+    background: var(--color-bg-subtle);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    padding: 2.5rem 0;
+  }
+
+  .stats-inner {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    text-align: center;
+  }
+
+  .stat-num { font-size: 1.75rem; font-weight: 700; color: var(--color-text); }
+  .stat-label { font-size: 0.8rem; color: var(--color-text-muted); margin-top: 0.2rem; }
+  .stat-divider { width: 1px; height: 40px; background: var(--color-border); }
+
+  @media (max-width: 480px) { .stat-divider { display: none; } }
+</style>

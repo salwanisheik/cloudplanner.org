@@ -1,0 +1,356 @@
+<style> *{box-sizing:border-box;margin:0;padding:0} .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)} .tabs{display:flex;gap:4px;margin-bottom:20px;flex-wrap:wrap} .tab{padding:7px 14px;font-size:13px;border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-md);cursor:pointer;background:transparent;color:var(--color-text-secondary);transition:all .15s} .tab.active{background:var(--color-text-primary);color:var(--color-background-primary);border-color:var(--color-text-primary)} .tab:hover:not(.active){background:var(--color-background-secondary)} .panel{display:none;animation:fi .2s ease} .panel.active{display:block} @keyframes fi{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}} .sec{font-size:15px;font-weight:500;color:var(--color-text-primary);margin-bottom:4px} .sub{font-size:12px;color:var(--color-text-secondary);margin-bottom:14px} .card-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:18px} .card{background:var(--color-background-secondary);border-radius:var(--border-radius-lg);padding:14px} .cl{font-size:11px;color:var(--color-text-secondary);margin-bottom:4px;text-transform:uppercase;letter-spacing:.04em} .cv{font-size:20px;font-weight:500;color:var(--color-text-primary)} .cn{font-size:11px;color:var(--color-text-secondary);margin-top:3px} .tw{border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);overflow:hidden;margin-bottom:16px} table{width:100%;border-collapse:collapse;font-size:12px;table-layout:fixed} thead th{background:var(--color-background-secondary);padding:8px 10px;text-align:left;font-weight:500;color:var(--color-text-secondary);font-size:11px;border-bottom:0.5px solid var(--color-border-tertiary)} tbody td{padding:7px 10px;border-bottom:0.5px solid var(--color-border-tertiary);color:var(--color-text-primary);vertical-align:top} tbody tr:last-child td{border-bottom:none} tbody tr:hover td{background:var(--color-background-secondary)} .pill{display:inline-block;font-size:10px;padding:2px 7px;border-radius:20px;font-weight:500;white-space:nowrap} .pc{background:var(--color-background-danger);color:var(--color-text-danger)} .pt{background:var(--color-background-warning);color:var(--color-text-warning)} .pi{background:var(--color-background-info);color:var(--color-text-info)} .pg{background:var(--color-background-success);color:var(--color-text-success)} .pp{background:var(--color-background-secondary);color:var(--color-text-secondary)} .fbar{height:5px;border-radius:3px;background:var(--color-border-tertiary);margin-top:4px} .ffill{height:100%;border-radius:3px} .filter-row{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap} .fbtn{padding:5px 10px;font-size:11px;border:0.5px solid var(--color-border-secondary);border-radius:20px;cursor:pointer;background:transparent;color:var(--color-text-secondary);transition:all .15s} .fbtn.on{background:var(--color-text-primary);color:var(--color-background-primary);border-color:var(--color-text-primary)} .brief{border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:14px;margin-bottom:10px} .bh{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:8px} .bt{font-size:13px;font-weight:500;color:var(--color-text-primary);flex:1} .hook{margin-top:6px;font-size:11px;padding:6px 8px;background:var(--color-background-success);border-radius:var(--border-radius-md);color:var(--color-text-success)} .cal-row{display:grid;grid-template-columns:56px 1fr;gap:10px;margin-bottom:10px} .cal-mo{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:8px;text-align:center;font-size:11px;font-weight:500;color:var(--color-text-primary);display:flex;flex-direction:column;justify-content:center;align-items:center;gap:2px} .cal-items{display:flex;flex-direction:column;gap:6px} .cal-item{border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:8px 10px} .ci-title{font-size:12px;font-weight:500;color:var(--color-text-primary);margin-bottom:3px} .ci-meta{font-size:11px;color:var(--color-text-secondary);display:flex;gap:4px;flex-wrap:wrap} .ask{display:block;width:100%;margin-top:10px;padding:9px;font-size:13px;border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-md);background:transparent;color:var(--color-text-secondary);cursor:pointer;text-align:left;transition:background .15s} .ask:hover{background:var(--color-background-secondary)} .trend-row{display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:0.5px solid var(--color-border-tertiary);font-size:12px} .trend-row:last-child{border-bottom:none} .trend-tag{min-width:90px} </style>
+
+<h2 class="sr-only">FinOps and cloud spend keyword list and 12-month content plan for cloudplanner.org — 84 keywords across 6 clusters with editorial calendar and programmatic targets.</h2>
+
+<div style="padding:1rem 0 0">
+  <div style="font-size:11px;color:var(--color-text-secondary);margin-bottom:6px;letter-spacing:.04em;text-transform:uppercase">cloudplanner.org · FinOps niche deep-dive</div>
+  <div style="font-size:18px;font-weight:500;color:var(--color-text-primary);margin-bottom:18px">FinOps & cloud spend — keyword list + content plan</div>
+
+  <div class="tabs">
+    <button class="tab active" onclick="show('overview')">Overview</button>
+    <button class="tab" onclick="show('keywords')">Keyword list</button>
+    <button class="tab" onclick="show('briefs')">Content briefs</button>
+    <button class="tab" onclick="show('calendar')">12-month calendar</button>
+    <button class="tab" onclick="show('programmatic')">Programmatic pages</button>
+  </div>
+
+  <!-- OVERVIEW -->
+  <div id="panel-overview" class="panel active">
+    <div class="sec">FinOps niche snapshot — June 2026</div>
+    <div class="sub">Live market data + SEO opportunity sizing</div>
+    <div class="card-g">
+      <div class="card"><div class="cl">Keywords mapped</div><div class="cv">84</div><div class="cn">6 sub-clusters</div></div>
+      <div class="card"><div class="cl">CPC range</div><div class="cv">$6–32</div><div class="cn">High commercial value</div></div>
+      <div class="card"><div class="cl">AI spend mgmt</div><div class="cv">98%</div><div class="cn">FinOps teams now managing AI costs</div></div>
+      <div class="card"><div class="cl">SaaS mgmt scope</div><div class="cv">90%</div><div class="cn">FinOps teams covering SaaS too</div></div>
+    </div>
+
+    <div class="sec" style="margin-bottom:8px">6 keyword clusters — opportunity map</div>
+    <div id="cluster-map"></div>
+
+    <div class="sec" style="margin-bottom:8px;margin-top:18px">Emerging sub-niches with near-zero SEO coverage</div>
+    <div style="border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:4px 14px" id="trends"></div>
+
+    <button class="ask" onclick="sendPrompt('Write a full 3000-word pillar page brief for the FinOps hub on cloudplanner.org with H1, H2 structure, meta description and target keywords')">Write the FinOps pillar page brief ↗</button>
+    <button class="ask" onclick="sendPrompt('Give me a competitor content gap analysis for the FinOps niche — which pages are ranking but thin that cloudplanner.org can outrank?')">Run competitor content gap analysis ↗</button>
+  </div>
+
+  <!-- KEYWORDS -->
+  <div id="panel-keywords" class="panel">
+    <div class="sec">84 keywords — full list</div>
+    <div class="sub">Filter by cluster. Validate live volume + KD in Ahrefs or Semrush before publishing.</div>
+    <div class="filter-row" id="filters"></div>
+    <div class="tw">
+      <table>
+        <colgroup><col style="width:36%"><col style="width:14%"><col style="width:12%"><col style="width:12%"><col style="width:26%"></colgroup>
+        <thead><tr><th>Keyword</th><th>Intent</th><th>KD est.</th><th>CPC est.</th><th>Page type</th></tr></thead>
+        <tbody id="kw-body"></tbody>
+      </table>
+    </div>
+    <button class="ask" onclick="sendPrompt('Export all 84 FinOps keywords as a CSV with columns: keyword, cluster, intent, KD, CPC, URL slug, page type, word count target')">Export full keyword CSV ↗</button>
+  </div>
+
+  <!-- BRIEFS -->
+  <div id="panel-briefs" class="panel">
+    <div class="sec">Top 8 priority content briefs</div>
+    <div class="sub">Highest traffic + conversion potential. Build these first.</div>
+    <div id="brief-list"></div>
+    <button class="ask" onclick="sendPrompt('Write the complete 2500-word article for the cloud cost optimisation guide on cloudplanner.org — include all H2s, internal links, and a CTA strategy')">Write cloud cost optimisation article ↗</button>
+    <button class="ask" onclick="sendPrompt('Build the full interactive AWS vs Azure cost calculator spec for cloudplanner.org — include UI wireframe, formula logic, and GA4 event tracking plan')">Build cost calculator spec ↗</button>
+  </div>
+
+  <!-- CALENDAR -->
+  <div id="panel-calendar" class="panel">
+    <div class="sec">12-month content calendar</div>
+    <div class="sub">Phase 1 (M1–3): pillar foundation → Phase 2 (M4–6): comparisons & calculators → Phase 3 (M7–9): programmatic scale → Phase 4 (M10–12): authority & emerging topics</div>
+    <div id="cal-list"></div>
+    <button class="ask" onclick="sendPrompt('Give me a detailed week-by-week editorial plan for Month 1 of the FinOps content build on cloudplanner.org including briefs, word counts and internal linking targets')">Expand Month 1 in detail ↗</button>
+  </div>
+
+  <!-- PROGRAMMATIC -->
+  <div id="panel-programmatic" class="panel">
+    <div class="sec">Programmatic page templates</div>
+    <div class="sub">156 indexable URLs from 6 templates — scaling the FinOps cluster without writing each page from scratch</div>
+    <div class="tw">
+      <table>
+        <colgroup><col style="width:36%"><col style="width:22%"><col style="width:12%"><col style="width:30%"></colgroup>
+        <thead><tr><th>URL template</th><th>Variable set</th><th>Pages</th><th>Conversion hook</th></tr></thead>
+        <tbody id="prog-body"></tbody>
+      </table>
+    </div>
+    <div class="sec" style="margin-bottom:8px">Variable matrices</div>
+    <div id="var-matrices"></div>
+    <button class="ask" onclick="sendPrompt('Write the Next.js getStaticPaths and getStaticProps code for the /finops/[provider]-cost-calculator-[size] programmatic template on cloudplanner.org')">Generate Next.js template code ↗</button>
+    <button class="ask" onclick="sendPrompt('Build a Google Sheets content database schema for all FinOps programmatic pages on cloudplanner.org with all variable columns and content slots')">Build content database schema ↗</button>
+  </div>
+</div>
+
+<script>
+function show(id){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+const clusters=[
+  {name:'Cloud cost optimisation',kws:18,intent:'Commercial',cpc:'$10–18',color:'#E24B4A',pct:100},
+  {name:'FinOps tools & comparisons',kws:16,intent:'Commercial',cpc:'$18–32',color:'#378ADD',pct:92},
+  {name:'AWS / Azure / GCP spend',kws:15,intent:'Commercial',cpc:'$12–25',color:'#534AB7',pct:86},
+  {name:'Reserved instances & savings plans',kws:12,intent:'Transactional',cpc:'$14–26',color:'#EF9F27',pct:68},
+  {name:'FinOps KPIs & reporting',kws:12,intent:'Informational',cpc:'$6–12',color:'#1D9E75',pct:68},
+  {name:'Team, org & chargeback',kws:11,intent:'Informational',cpc:'$6–13',color:'#888780',pct:62},
+];
+const cm=document.getElementById('cluster-map');
+clusters.forEach(c=>{
+  cm.innerHTML+=`<div style="display:grid;grid-template-columns:200px 1fr 70px 110px;gap:10px;align-items:center;padding:8px 0;border-bottom:0.5px solid var(--color-border-tertiary);font-size:12px">
+    <span style="font-weight:500;color:var(--color-text-primary)">${c.name}</span>
+    <div><div class="fbar"><div class="ffill" style="width:${c.pct}%;background:${c.color}"></div></div></div>
+    <span style="color:var(--color-text-secondary);text-align:right">${c.kws} kws</span>
+    <div style="text-align:right"><span class="pill ${c.intent==='Commercial'?'pc':c.intent==='Transactional'?'pt':'pi'}">${c.intent}</span></div>
+  </div>`;
+});
+
+const trends=[
+  {tag:'🔥 Hot now',label:'AI / LLM inference cost management',note:'98% of FinOps teams now manage AI spend — near-zero content exists for this'},
+  {tag:'📈 Rising',label:'FinOps for SaaS spend',note:'90% of teams now cover SaaS — keyword cluster barely indexed anywhere'},
+  {tag:'📈 Rising',label:'FOCUS standard (FinOps Open Cost Spec)',note:'Became GA in 2024 — practitioners searching for guides, templates'},
+  {tag:'🆕 Emerging',label:'Pre-deployment architecture costing',note:'Top desired tooling capability per State of FinOps 2026 — almost no SEO content'},
+  {tag:'🆕 Emerging',label:'FinOps for Kubernetes / container cost',note:'Dynamic workloads make traditional tracking inaccurate — growing search demand'},
+  {tag:'🆕 Emerging',label:'Unit economics: cost per user / transaction',note:'Engineering + finance alignment keyword — low competition, high value'},
+];
+const tr=document.getElementById('trends');
+trends.forEach(t=>{
+  tr.innerHTML+=`<div class="trend-row">
+    <span class="trend-tag" style="font-size:11px;font-weight:500;color:var(--color-text-primary)">${t.tag}</span>
+    <span style="font-weight:500;color:var(--color-text-primary);flex:1">${t.label}</span>
+    <span style="font-size:11px;color:var(--color-text-secondary);max-width:220px;text-align:right">${t.note}</span>
+  </div>`;
+});
+
+const kws=[
+  {kw:'cloud cost optimisation',i:'Commercial',kd:'High',cpc:'$18',t:'Pillar guide',c:'Cost optimisation'},
+  {kw:'how to reduce cloud costs',i:'Commercial',kd:'Mid',cpc:'$14',t:'Guide',c:'Cost optimisation'},
+  {kw:'cloud cost management best practices',i:'Commercial',kd:'Mid',cpc:'$16',t:'Guide',c:'Cost optimisation'},
+  {kw:'cloud spend optimisation strategies',i:'Commercial',kd:'Low',cpc:'$12',t:'Guide',c:'Cost optimisation'},
+  {kw:'cloud cost visibility tools',i:'Commercial',kd:'Low',cpc:'$22',t:'Comparison',c:'Cost optimisation'},
+  {kw:'reduce aws bill',i:'Commercial',kd:'Mid',cpc:'$20',t:'Guide',c:'Cost optimisation'},
+  {kw:'cloud waste reduction',i:'Commercial',kd:'Low',cpc:'$11',t:'Guide',c:'Cost optimisation'},
+  {kw:'cloud cost allocation',i:'Commercial',kd:'Low',cpc:'$13',t:'Guide',c:'Cost optimisation'},
+  {kw:'cloud tagging strategy for cost',i:'Commercial',kd:'Low',cpc:'$9',t:'Guide',c:'Cost optimisation'},
+  {kw:'cloud rightsizing guide',i:'Commercial',kd:'Mid',cpc:'$17',t:'Guide',c:'Cost optimisation'},
+  {kw:'idle cloud resource cleanup',i:'Transactional',kd:'Low',cpc:'$10',t:'How-to',c:'Cost optimisation'},
+  {kw:'cloud cost forecasting tool',i:'Commercial',kd:'Low',cpc:'$16',t:'Tool page',c:'Cost optimisation'},
+  {kw:'cloud budget alerts setup',i:'Transactional',kd:'Low',cpc:'$8',t:'How-to',c:'Cost optimisation'},
+  {kw:'cloud overspend root causes',i:'Informational',kd:'Low',cpc:'$6',t:'Blog',c:'Cost optimisation'},
+  {kw:'cloud cost governance framework',i:'Commercial',kd:'Low',cpc:'$14',t:'Guide',c:'Cost optimisation'},
+  {kw:'unit economics cloud cost',i:'Informational',kd:'Low',cpc:'$9',t:'Blog',c:'Cost optimisation'},
+  {kw:'cloud cost per transaction',i:'Informational',kd:'Low',cpc:'$10',t:'Blog',c:'Cost optimisation'},
+  {kw:'ai cloud cost management 2026',i:'Commercial',kd:'Low',cpc:'$22',t:'Guide',c:'Cost optimisation'},
+  {kw:'best finops tools 2026',i:'Commercial',kd:'Mid',cpc:'$28',t:'Comparison',c:'FinOps tools'},
+  {kw:'finops platform comparison',i:'Commercial',kd:'Mid',cpc:'$25',t:'Comparison',c:'FinOps tools'},
+  {kw:'cloudhealth vs cloudcheckr',i:'Commercial',kd:'Low',cpc:'$22',t:'Comparison',c:'FinOps tools'},
+  {kw:'aws cost explorer alternatives',i:'Commercial',kd:'Low',cpc:'$19',t:'Comparison',c:'FinOps tools'},
+  {kw:'finops tools for startups',i:'Commercial',kd:'Low',cpc:'$18',t:'Comparison',c:'FinOps tools'},
+  {kw:'nops vs cloudzero',i:'Commercial',kd:'Low',cpc:'$21',t:'Comparison',c:'FinOps tools'},
+  {kw:'open source finops tools',i:'Commercial',kd:'Low',cpc:'$10',t:'List',c:'FinOps tools'},
+  {kw:'finops tool for kubernetes',i:'Commercial',kd:'Low',cpc:'$18',t:'Comparison',c:'FinOps tools'},
+  {kw:'kubecost vs opencost',i:'Commercial',kd:'Low',cpc:'$14',t:'Comparison',c:'FinOps tools'},
+  {kw:'cloud cost anomaly detection tools',i:'Commercial',kd:'Low',cpc:'$16',t:'Comparison',c:'FinOps tools'},
+  {kw:'finops tools multi-cloud',i:'Commercial',kd:'Low',cpc:'$22',t:'Comparison',c:'FinOps tools'},
+  {kw:'cloud cost dashboard free',i:'Commercial',kd:'Low',cpc:'$9',t:'List',c:'FinOps tools'},
+  {kw:'infracost guide',i:'Commercial',kd:'Low',cpc:'$12',t:'Review',c:'FinOps tools'},
+  {kw:'finops tools for enterprise',i:'Commercial',kd:'Low',cpc:'$26',t:'Comparison',c:'FinOps tools'},
+  {kw:'cloudability pricing review',i:'Transactional',kd:'Low',cpc:'$24',t:'Review',c:'FinOps tools'},
+  {kw:'ai-native finops tools',i:'Commercial',kd:'Low',cpc:'$20',t:'Comparison',c:'FinOps tools'},
+  {kw:'FOCUS finops standard tools',i:'Commercial',kd:'Low',cpc:'$14',t:'Guide',c:'FinOps tools'},
+  {kw:'aws cost calculator',i:'Transactional',kd:'High',cpc:'$25',t:'Calculator',c:'Provider spend'},
+  {kw:'azure cost optimisation',i:'Commercial',kd:'Mid',cpc:'$20',t:'Guide',c:'Provider spend'},
+  {kw:'gcp cost reduction',i:'Commercial',kd:'Mid',cpc:'$18',t:'Guide',c:'Provider spend'},
+  {kw:'aws vs azure cost comparison',i:'Commercial',kd:'Mid',cpc:'$22',t:'Comparison',c:'Provider spend'},
+  {kw:'gcp vs aws pricing 2026',i:'Commercial',kd:'Mid',cpc:'$20',t:'Comparison',c:'Provider spend'},
+  {kw:'azure vs gcp cost',i:'Commercial',kd:'Low',cpc:'$18',t:'Comparison',c:'Provider spend'},
+  {kw:'aws data transfer costs',i:'Informational',kd:'Low',cpc:'$11',t:'Guide',c:'Provider spend'},
+  {kw:'aws s3 cost optimisation',i:'Commercial',kd:'Low',cpc:'$14',t:'Guide',c:'Provider spend'},
+  {kw:'ec2 spot instances guide',i:'Informational',kd:'Mid',cpc:'$12',t:'Guide',c:'Provider spend'},
+  {kw:'gcp committed use discounts',i:'Commercial',kd:'Low',cpc:'$16',t:'Guide',c:'Provider spend'},
+  {kw:'multicloud cost management',i:'Commercial',kd:'Mid',cpc:'$19',t:'Guide',c:'Provider spend'},
+  {kw:'azure reserved instances calculator',i:'Transactional',kd:'Low',cpc:'$24',t:'Calculator',c:'Provider spend'},
+  {kw:'aws savings plans vs reserved instances',i:'Commercial',kd:'Low',cpc:'$20',t:'Comparison',c:'Provider spend'},
+  {kw:'aws cost explorer guide',i:'Informational',kd:'Mid',cpc:'$12',t:'Guide',c:'Provider spend'},
+  {kw:'oracle cloud cost comparison',i:'Commercial',kd:'Low',cpc:'$16',t:'Comparison',c:'Provider spend'},
+  {kw:'aws cost per service breakdown',i:'Informational',kd:'Low',cpc:'$10',t:'Guide',c:'Provider spend'},
+  {kw:'reserved instances vs on-demand',i:'Commercial',kd:'Mid',cpc:'$22',t:'Comparison',c:'Reserved instances'},
+  {kw:'aws savings plans explained',i:'Informational',kd:'Low',cpc:'$13',t:'Guide',c:'Reserved instances'},
+  {kw:'reserved instance calculator',i:'Transactional',kd:'Low',cpc:'$26',t:'Calculator',c:'Reserved instances'},
+  {kw:'spot instance strategy aws',i:'Commercial',kd:'Low',cpc:'$14',t:'Guide',c:'Reserved instances'},
+  {kw:'when to buy reserved instances',i:'Commercial',kd:'Low',cpc:'$18',t:'Guide',c:'Reserved instances'},
+  {kw:'1 year vs 3 year reserved instances',i:'Commercial',kd:'Low',cpc:'$16',t:'Comparison',c:'Reserved instances'},
+  {kw:'convertible vs standard reserved instances',i:'Informational',kd:'Low',cpc:'$11',t:'Blog',c:'Reserved instances'},
+  {kw:'azure savings plan guide',i:'Informational',kd:'Low',cpc:'$12',t:'Guide',c:'Reserved instances'},
+  {kw:'gcp committed use vs on-demand',i:'Commercial',kd:'Low',cpc:'$15',t:'Comparison',c:'Reserved instances'},
+  {kw:'savings plan utilisation rate',i:'Informational',kd:'Low',cpc:'$10',t:'Blog',c:'Reserved instances'},
+  {kw:'reserved instance coverage dashboard',i:'Commercial',kd:'Low',cpc:'$14',t:'Guide',c:'Reserved instances'},
+  {kw:'commitments vs savings plans difference',i:'Informational',kd:'Low',cpc:'$11',t:'Blog',c:'Reserved instances'},
+  {kw:'finops kpis',i:'Informational',kd:'Low',cpc:'$8',t:'Guide',c:'KPIs & reporting'},
+  {kw:'cloud cost kpis to track',i:'Informational',kd:'Low',cpc:'$7',t:'Guide',c:'KPIs & reporting'},
+  {kw:'finops metrics 2026',i:'Informational',kd:'Low',cpc:'$9',t:'Guide',c:'KPIs & reporting'},
+  {kw:'cloud cost anomaly detection',i:'Commercial',kd:'Low',cpc:'$16',t:'Guide',c:'KPIs & reporting'},
+  {kw:'cloud budget variance reporting',i:'Commercial',kd:'Low',cpc:'$12',t:'Guide',c:'KPIs & reporting'},
+  {kw:'finops maturity model',i:'Informational',kd:'Low',cpc:'$7',t:'Guide',c:'KPIs & reporting'},
+  {kw:'finops roi calculation',i:'Informational',kd:'Low',cpc:'$9',t:'Guide',c:'KPIs & reporting'},
+  {kw:'cloud cost reporting dashboard',i:'Commercial',kd:'Low',cpc:'$18',t:'Tool page',c:'KPIs & reporting'},
+  {kw:'cloud cost per customer metric',i:'Informational',kd:'Low',cpc:'$10',t:'Blog',c:'KPIs & reporting'},
+  {kw:'effective cost optimisation rate',i:'Informational',kd:'Low',cpc:'$8',t:'Blog',c:'KPIs & reporting'},
+  {kw:'cloud spend trends 2026',i:'Informational',kd:'Low',cpc:'$6',t:'Blog',c:'KPIs & reporting'},
+  {kw:'pre-deployment cost estimation',i:'Commercial',kd:'Low',cpc:'$14',t:'Guide',c:'KPIs & reporting'},
+  {kw:'cloud chargeback model',i:'Commercial',kd:'Low',cpc:'$12',t:'Guide',c:'Org & chargeback'},
+  {kw:'cloud showback vs chargeback',i:'Informational',kd:'Low',cpc:'$9',t:'Blog',c:'Org & chargeback'},
+  {kw:'finops team structure',i:'Informational',kd:'Low',cpc:'$7',t:'Guide',c:'Org & chargeback'},
+  {kw:'developer finops practices',i:'Informational',kd:'Low',cpc:'$9',t:'Guide',c:'Org & chargeback'},
+  {kw:'finops certification guide 2026',i:'Informational',kd:'Low',cpc:'$7',t:'Guide',c:'Org & chargeback'},
+  {kw:'cloud cost tagging policy template',i:'Transactional',kd:'Low',cpc:'$10',t:'Template',c:'Org & chargeback'},
+  {kw:'finops foundation framework explained',i:'Informational',kd:'Low',cpc:'$7',t:'Guide',c:'Org & chargeback'},
+  {kw:'cloud governance policy for spend',i:'Commercial',kd:'Low',cpc:'$13',t:'Guide',c:'Org & chargeback'},
+  {kw:'engineering cloud cost ownership',i:'Informational',kd:'Low',cpc:'$8',t:'Blog',c:'Org & chargeback'},
+  {kw:'finops saas spend management',i:'Commercial',kd:'Low',cpc:'$15',t:'Guide',c:'Org & chargeback'},
+  {kw:'FOCUS finops open cost specification',i:'Informational',kd:'Low',cpc:'$8',t:'Guide',c:'Org & chargeback'},
+];
+
+let activeFilter='All';
+const allClusters=['All',...new Set(kws.map(k=>k.c))];
+const fi=document.getElementById('filters');
+allClusters.forEach(c=>{
+  const b=document.createElement('button');
+  b.className='fbtn'+(c==='All'?' on':'');
+  b.textContent=c;
+  b.onclick=()=>{
+    activeFilter=c;
+    document.querySelectorAll('.fbtn').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');
+    renderKws();
+  };
+  fi.appendChild(b);
+});
+
+function ip(i){return`<span class="pill ${i==='Commercial'?'pc':i==='Transactional'?'pt':'pi'}">${i}</span>`}
+function kp(k){return`<span class="pill ${k==='High'?'pc':k==='Mid'?'pt':'pg'}">${k}</span>`}
+
+function renderKws(){
+  const body=document.getElementById('kw-body');
+  const list=activeFilter==='All'?kws:kws.filter(k=>k.c===activeFilter);
+  body.innerHTML=list.map(k=>`<tr>
+    <td style="font-family:monospace;font-size:11px">${k.kw}</td>
+    <td>${ip(k.i)}</td><td>${kp(k.kd)}</td>
+    <td style="color:var(--color-text-success);font-weight:500">${k.cpc}</td>
+    <td><span class="pill pp">${k.t}</span></td>
+  </tr>`).join('');
+}
+renderKws();
+
+const briefs=[
+  {title:'FinOps hub pillar page',url:'/finops/',p:'P0',i:'Commercial',kws:['finops','cloud cost management','cloud spend optimisation'],wc:'3000+',h2:['What is FinOps','FinOps vs traditional IT finance','The 3 phases: Inform, Optimize, Operate','Top tools compared','KPIs to track','Getting started checklist'],hook:'Tool comparison table + lead magnet: FinOps starter checklist download (email capture)'},
+  {title:'Cloud cost optimisation guide',url:'/finops/cloud-cost-optimisation/',p:'P0',i:'Commercial',kws:['cloud cost optimisation','reduce cloud costs','cloud spend strategies'],wc:'2500',h2:['Why cloud costs spiral','Rightsizing: the biggest lever','Reserved instances & savings plans','Eliminating idle resources','Tagging & cost allocation','FinOps toolchain to automate this'],hook:'Embedded savings calculator → email gate for full PDF report'},
+  {title:'Best FinOps tools 2026',url:'/finops/best-finops-tools/',p:'P0',i:'Commercial',kws:['best finops tools 2026','finops platform comparison'],wc:'2000',h2:['How we evaluated','Top 8 tools ranked','Best for startups','Best for enterprise','Best free options','Our pick'],hook:'Feature + price comparison table with affiliate links; CTA to cost calculator'},
+  {title:'AWS cost calculator (interactive)',url:'/calculators/aws-cost-calculator/',p:'P0',i:'Transactional',kws:['aws cost calculator','aws pricing estimator'],wc:'Tool + 500w',h2:['How to use this calculator','AWS cost drivers','Savings plan vs on-demand','How to reduce your bill'],hook:'Interactive calculator → email capture for full breakdown PDF'},
+  {title:'AI / LLM inference cost guide',url:'/finops/ai-llm-inference-cost/',p:'P1',i:'Commercial',kws:['ai cloud cost management 2026','llm inference cost','gpu cloud cost finops'],wc:'1800',h2:['Why LLM costs spike','GPU instance pricing compared','Token pricing across providers','Batching & caching strategies','FinOps tools that support AI spend'],hook:'First-mover page — near-zero competition. Internal link to tools comparison.'},
+  {title:'Reserved instances vs savings plans',url:'/finops/reserved-instances-vs-savings-plans/',p:'P1',i:'Commercial',kws:['reserved instances vs on-demand','aws savings plans explained','when to buy reserved instances'],wc:'1800',h2:['Key differences','When to choose RIs','When to choose savings plans','1-year vs 3-year','GCP & Azure equivalents'],hook:'Decision flowchart + link to RI calculator'},
+  {title:'FinOps KPIs guide + template',url:'/finops/finops-kpis/',p:'P1',i:'Informational',kws:['finops kpis','cloud cost kpis','finops metrics'],wc:'1500',h2:['What are FinOps KPIs','15 KPIs to track','KPIs by maturity stage','Building a KPI dashboard','Benchmarks by company size'],hook:'Downloadable KPI tracking spreadsheet — email capture lead magnet'},
+  {title:'FinOps for SaaS spend',url:'/finops/finops-saas-spend/',p:'P1',i:'Commercial',kws:['finops saas spend management','saas cost management','cloud and saas finops'],wc:'1500',h2:['Why SaaS is now a FinOps problem','SaaS sprawl costs','How to get visibility','Chargeback for SaaS','Tools that cover SaaS + cloud'],hook:'Emerging topic — 90% of FinOps teams now cover SaaS, minimal content exists'},
+];
+const bl=document.getElementById('brief-list');
+briefs.forEach(b=>{
+  bl.innerHTML+=`<div class="brief">
+    <div class="bh">
+      <div class="bt">${b.title}</div>
+      <span class="pill ${b.p==='P0'?'pc':'pt'}">${b.p}</span>
+    </div>
+    <div style="margin-bottom:6px;font-size:11px;color:var(--color-text-secondary)">
+      <span style="font-family:monospace">${b.url}</span> · ${b.wc} words · ${ip(b.i)}
+    </div>
+    <div style="margin-bottom:6px;font-size:11px">
+      ${b.kws.map(k=>`<span class="pill pp" style="margin:1px">${k}</span>`).join(' ')}
+    </div>
+    <div style="font-size:11px;color:var(--color-text-secondary);margin-bottom:4px"><strong>H2 outline:</strong> ${b.h2.join(' → ')}</div>
+    <div class="hook">Conversion hook: ${b.hook}</div>
+  </div>`;
+});
+
+const cal=[
+  {mo:'M1–2',phase:'Foundation',items:[
+    {t:'FinOps hub pillar page',m:['P0','3000w','Commercial','Hub']},
+    {t:'Cloud cost optimisation guide',m:['P0','2500w','Commercial','Guide']},
+    {t:'What is FinOps? (blog)',m:['P2','800w','Informational','Blog']},
+  ]},
+  {mo:'M3',phase:'Authority',items:[
+    {t:'Best FinOps tools 2026',m:['P0','2000w','Commercial','Comparison']},
+    {t:'FinOps KPIs guide + spreadsheet download',m:['P1','1500w','Informational','Lead magnet']},
+    {t:'Cloud rightsizing explainer',m:['P1','1200w','Informational','Guide']},
+  ]},
+  {mo:'M4',phase:'Calculators',items:[
+    {t:'AWS cost calculator (interactive)',m:['P0','Tool','Transactional','Calculator']},
+    {t:'Reserved instance calculator',m:['P0','Tool','Transactional','Calculator']},
+    {t:'Azure reserved instances calculator',m:['P1','Tool','Transactional','Calculator']},
+  ]},
+  {mo:'M5–6',phase:'Comparisons',items:[
+    {t:'Reserved instances vs savings plans',m:['P1','1800w','Commercial','Comparison']},
+    {t:'AWS vs Azure cost comparison',m:['P1','2000w','Commercial','Comparison']},
+    {t:'nOps vs CloudZero review',m:['P1','1500w','Commercial','Review']},
+    {t:'Cloud showback vs chargeback',m:['P1','1200w','Informational','Guide']},
+  ]},
+  {mo:'M7–9',phase:'Programmatic',items:[
+    {t:'[Provider] cost calculator for [company size] — 40 pages',m:['P1','Template','Transactional','Programmatic']},
+    {t:'Best FinOps tools for [industry] — 20 pages',m:['P1','Template','Commercial','Programmatic']},
+    {t:'Reduce [provider] costs for [team size] — 36 pages',m:['P2','Template','Commercial','Programmatic']},
+  ]},
+  {mo:'M10–12',phase:'Emerging',items:[
+    {t:'AI / LLM inference cost guide',m:['P1','1800w','Commercial','Guide']},
+    {t:'FinOps for SaaS spend',m:['P1','1500w','Commercial','Guide']},
+    {t:'FOCUS standard explained',m:['P2','1200w','Informational','Guide']},
+    {t:'Pre-deployment architecture costing',m:['P1','1500w','Commercial','Guide']},
+    {t:'Link-building outreach + guest posts',m:['P1','Off-page','Authority','Backlinks']},
+  ]},
+];
+const cl=document.getElementById('cal-list');
+cal.forEach(c=>{
+  cl.innerHTML+=`<div class="cal-row">
+    <div class="cal-mo">${c.mo}<span style="font-size:10px;font-weight:400;color:var(--color-text-secondary)">${c.phase}</span></div>
+    <div class="cal-items">${c.items.map(i=>`<div class="cal-item">
+      <div class="ci-title">${i.t}</div>
+      <div class="ci-meta">${i.m.map(m=>`<span class="pill pp">${m}</span>`).join('')}</div>
+    </div>`).join('')}</div>
+  </div>`;
+});
+
+const progs=[
+  {url:'/finops/[provider]-cost-calculator-[size]',vars:'6 providers × 6 sizes',n:'36',hook:'Interactive calculator → email capture'},
+  {url:'/finops/best-finops-tools-[industry]',vars:'16 industry verticals',n:'16',hook:'Top 5 list → affiliate / comparison CTAs'},
+  {url:'/finops/reduce-[provider]-costs-[teamsize]',vars:'6 providers × 6 team sizes',n:'36',hook:'Checklist download → consultation CTA'},
+  {url:'/finops/[provider]-vs-[provider]-cost-[usecase]',vars:'Provider pairs × 5 use cases',n:'30',hook:'Decision matrix → product page CTA'},
+  {url:'/finops/[provider]-reserved-instances-[region]',vars:'3 providers × 8 regions',n:'24',hook:'RI calculator embed → email gate'},
+  {url:'/finops/finops-tools-for-[role]',vars:'10 engineering / finance roles',n:'10',hook:'Role-specific stack + demo CTA'},
+];
+const pb=document.getElementById('prog-body');
+pb.innerHTML=progs.map(p=>`<tr>
+  <td style="font-family:monospace;font-size:10px;word-break:break-all">${p.url}</td>
+  <td style="font-size:11px;color:var(--color-text-secondary)">${p.vars}</td>
+  <td><span class="pill pt">${p.n} pages</span></td>
+  <td style="font-size:11px;color:var(--color-text-secondary)">${p.hook}</td>
+</tr>`).join('');
+
+const vars=[
+  {name:'[provider]',vals:['aws','azure','gcp','oracle-cloud','ibm-cloud','multi-cloud']},
+  {name:'[industry]',vals:['fintech','ecommerce','saas','healthcare','media','gaming','logistics','edtech','legal','ngo','retail','manufacturing','martech','devtools','cybersecurity','agency']},
+  {name:'[size] / [teamsize]',vals:['startup','1-10-employees','11-50-employees','51-200-employees','200-500-employees','enterprise']},
+  {name:'[role]',vals:['cto','devops-engineer','cloud-architect','finance-team','product-manager','sre','platform-engineer','engineering-manager','cfo','developer']},
+  {name:'[region]',vals:['us-east','us-west','eu-west','eu-central','ap-southeast','ap-northeast','sa-east','ca-central']},
+  {name:'[usecase]',vals:['startups','enterprise','fintech','ecommerce','ai-ml-workloads']},
+];
+const vm=document.getElementById('var-matrices');
+vars.forEach(v=>{
+  vm.innerHTML+=`<div style="margin-bottom:12px">
+    <div style="font-size:12px;font-weight:500;color:var(--color-text-primary);margin-bottom:5px;font-family:monospace">${v.name}</div>
+    <div style="display:flex;flex-wrap:wrap;gap:4px">${v.vals.map(x=>`<span class="pill pi">${x}</span>`).join('')}</div>
+  </div>`;
+});
+</script>

@@ -1,0 +1,107 @@
+---
+const navLinks = [
+  { href: '/finops/', label: 'FinOps Guides' },
+  { href: '/calculators/', label: 'Calculators' },
+  { href: '/comparisons/', label: 'Compare Tools' },
+  { href: '/templates/', label: 'Templates' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="site-header">
+  <nav class="container nav-inner" aria-label="Main navigation">
+    <a href="/" class="nav-logo">
+      <span class="logo-mark">☁</span>
+      <span class="logo-text">cloudplanner<span class="logo-dot">.org</span></span>
+    </a>
+
+    <ul class="nav-links" role="list">
+      {navLinks.map(link => (
+        <li>
+          <a
+            href={link.href}
+            class:list={['nav-link', { 'nav-link--active': currentPath.startsWith(link.href) }]}
+          >
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <a href="/finops/" class="nav-cta">Get started →</a>
+  </nav>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    height: 60px;
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--color-text);
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+
+  .logo-mark { font-size: 1.2rem; }
+  .logo-dot { color: var(--color-brand); }
+
+  .nav-links {
+    display: flex;
+    list-style: none;
+    gap: 0.25rem;
+    flex: 1;
+  }
+
+  .nav-link {
+    padding: 0.35rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color 0.15s, background 0.15s;
+  }
+
+  .nav-link:hover,
+  .nav-link--active {
+    color: var(--color-text);
+    background: var(--color-bg-subtle);
+    text-decoration: none;
+  }
+
+  .nav-cta {
+    flex-shrink: 0;
+    padding: 0.4rem 1rem;
+    background: var(--color-brand);
+    color: #fff;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.15s;
+  }
+
+  .nav-cta:hover { background: var(--color-brand-dark); text-decoration: none; }
+
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+  }
+</style>

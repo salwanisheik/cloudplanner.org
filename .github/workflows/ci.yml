@@ -1,0 +1,58 @@
+name: CI
+
+on:
+  push:
+    branches: [main, dev]
+  pull_request:
+    branches: [main, dev]
+
+jobs:
+  build:
+    name: Build & type-check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Type-check (astro check)
+        run: npm run check
+        env:
+          # These are dummy values — the real values live in Vercel environment variables.
+          # We only need them so the build doesn't crash during CI.
+          AIRTABLE_API_KEY: ${{ secrets.AIRTABLE_API_KEY }}
+          AIRTABLE_BASE_COMPARISONS: ${{ secrets.AIRTABLE_BASE_COMPARISONS }}
+          AIRTABLE_BASE_GUIDES: ${{ secrets.AIRTABLE_BASE_GUIDES }}
+          AIRTABLE_BASE_CALCULATORS: ${{ secrets.AIRTABLE_BASE_CALCULATORS }}
+          AIRTABLE_BASE_TEMPLATES: ${{ secrets.AIRTABLE_BASE_TEMPLATES }}
+          AIRTABLE_BASE_MIGRATIONS: ${{ secrets.AIRTABLE_BASE_MIGRATIONS }}
+          PUBLIC_GA4_ID: G-PLACEHOLDER
+          PUBLIC_MIXPANEL_TOKEN: placeholder
+
+      - name: Build site
+        run: npm run build
+        env:
+          AIRTABLE_API_KEY: ${{ secrets.AIRTABLE_API_KEY }}
+          AIRTABLE_BASE_COMPARISONS: ${{ secrets.AIRTABLE_BASE_COMPARISONS }}
+          AIRTABLE_BASE_GUIDES: ${{ secrets.AIRTABLE_BASE_GUIDES }}
+          AIRTABLE_BASE_CALCULATORS: ${{ secrets.AIRTABLE_BASE_CALCULATORS }}
+          AIRTABLE_BASE_TEMPLATES: ${{ secrets.AIRTABLE_BASE_TEMPLATES }}
+          AIRTABLE_BASE_MIGRATIONS: ${{ secrets.AIRTABLE_BASE_MIGRATIONS }}
+          PUBLIC_GA4_ID: G-PLACEHOLDER
+          PUBLIC_MIXPANEL_TOKEN: placeholder
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+          retention-days: 7
