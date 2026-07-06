@@ -9,14 +9,6 @@
  *   const guides = await fetchRecords('AIRTABLE_BASE_GUIDES', 'Guides');
  */
 
-const AIRTABLE_API_KEY = import.meta.env.AIRTABLE_API_KEY;
-
-if (!AIRTABLE_API_KEY) {
-  throw new Error(
-    'Missing AIRTABLE_API_KEY. Copy .env.example to .env and add your key.'
-  );
-}
-
 /** Generic Airtable record shape */
 export interface AirtableRecord<T extends Record<string, unknown>> {
   id: string;
@@ -33,6 +25,15 @@ export async function fetchRecords<T extends Record<string, unknown>>(
   /** Optional filter formula, e.g. "{Status}='Published'" */
   filterFormula?: string
 ): Promise<AirtableRecord<T>[]> {
+  // Read the key inside the function so a missing key throws inside the
+  // async call (where try/catch in pages can catch it), not at import time.
+  const AIRTABLE_API_KEY = import.meta.env.AIRTABLE_API_KEY;
+  if (!AIRTABLE_API_KEY) {
+    throw new Error(
+      'Missing AIRTABLE_API_KEY. Add it to .env (see .env.example) or to your Vercel environment variables.'
+    );
+  }
+
   const baseId = import.meta.env[baseEnvKey];
 
   if (!baseId) {
@@ -75,6 +76,11 @@ export async function fetchRecord<T extends Record<string, unknown>>(
   tableName: string,
   recordId: string
 ): Promise<AirtableRecord<T>> {
+  const AIRTABLE_API_KEY = import.meta.env.AIRTABLE_API_KEY;
+  if (!AIRTABLE_API_KEY) {
+    throw new Error('Missing AIRTABLE_API_KEY.');
+  }
+
   const baseId = import.meta.env[baseEnvKey];
 
   if (!baseId) {
