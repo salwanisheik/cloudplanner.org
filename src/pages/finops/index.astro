@@ -1,0 +1,478 @@
+---
+/**
+ * /finops/ — FinOps hub pillar page
+ *
+ * Fetches published guides from the CP — Guides Airtable base at build time.
+ * Falls back gracefully to an empty state if the table has no published records yet.
+ */
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { fetchRecords, type AirtableRecord } from '@/lib/airtable';
+
+// ── Types ──────────────────────────────────────────────────────────────────
+interface GuideFields {
+  Title?: string;
+  Slug?: string;
+  Status?: string;
+  Category?: string;
+  Description?: string;
+  'Read Time'?: string;
+  Difficulty?: string;
+  'Published Date'?: string;
+}
+
+// ── Data (build-time Airtable fetch) ──────────────────────────────────────
+let guides: AirtableRecord<GuideFields>[] = [];
+
+try {
+  guides = await fetchRecords<GuideFields>(
+    'AIRTABLE_BASE_GUIDES',
+    'Guides',
+    "{Status}='Published'"
+  );
+} catch (err) {
+  // Log in CI/build output so the team can debug; page still renders
+  console.warn('[finops/index] Could not fetch guides from Airtable:', err);
+}
+
+// Only show cards that have at minimum a title and a slug
+const published = guides.filter(
+  (g) => g.fields.Title && g.fields.Slug
+);
+
+// ── Schema.org ────────────────────────────────────────────────────────────
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'FinOps Guides — Cloud Cost Optimization for Engineering Teams',
+  description:
+    'In-depth guides on FinOps principles, cloud cost optimization, and financial operations for AWS, Azure, and GCP teams.',
+  url: 'https://cloudplanner.org/finops/',
+  publisher: {
+    '@type': 'Organization',
+    name: 'CloudPlanner',
+    url: 'https://cloudplanner.org',
+  },
+  hasPart: published.map((g) => ({
+    '@type': 'Article',
+    headline: g.fields.Title,
+    url: `https://cloudplanner.org/finops/${g.fields.Slug}/`,
+  })),
+};
+---
+
+<BaseLayout
+  title="FinOps Guides — Cloud Cost Optimization | CloudPlanner"
+  description="In-depth guides on FinOps principles, cloud cost optimization, and financial operations for AWS, Azure, and GCP engineering teams."
+  schema={schema}
+>
+
+  <!-- ── Hero ──────────────────────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="container">
+      <p class="badge">FinOps Hub</p>
+      <h1>Cloud Cost Optimization<br />Done Right</h1>
+      <p class="lead">
+        Practical guides on FinOps principles, cost governance, and cloud
+        financial management — built for engineering and finance teams running
+        workloads on AWS, Azure, and GCP.
+      </p>
+      <div class="meta-row">
+        <span>📖 {published.length} {published.length === 1 ? 'guide' : 'guides'}</span>
+        <span>⚡ Updated regularly</span>
+        <span>🆓 Always free</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── What is FinOps ─────────────────────────────────────────────────── -->
+  <section class="what-is">
+    <div class="container">
+      <h2>What is FinOps?</h2>
+      <p class="intro-text">
+        FinOps (Financial Operations) is a cultural practice that brings
+        financial accountability to the variable-spend model of cloud. It unites
+        engineering, finance, and business teams around a shared goal: making
+        deliberate decisions about where every cloud dollar goes.
+      </p>
+      <p class="intro-text">
+        Unlike traditional IT cost models with fixed, predictable budgets, cloud
+        spending scales with usage — which means costs can spiral fast without
+        clear ownership. FinOps gives teams the frameworks, tooling, and
+        processes to stay in control.
+      </p>
+
+      <div class="pillars">
+        <div class="pillar">
+          <span class="pillar-icon">📊</span>
+          <h3>Inform</h3>
+          <p>
+            Real-time visibility into cloud spend, unit costs, and anomalies
+            across teams and services.
+          </p>
+        </div>
+        <div class="pillar">
+          <span class="pillar-icon">🎯</span>
+          <h3>Optimize</h3>
+          <p>
+            Reserved Instances, Spot usage, rightsizing, and architectural
+            changes that eliminate waste.
+          </p>
+        </div>
+        <div class="pillar">
+          <span class="pillar-icon">🏗️</span>
+          <h3>Operate</h3>
+          <p>
+            Continuous improvement cycles, tagging standards, and
+            cross-functional accountability built into daily workflows.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Guides grid ───────────────────────────────────────────────────── -->
+  <section class="guides">
+    <div class="container">
+      <h2>All FinOps Guides</h2>
+
+      {published.length > 0 ? (
+        <div class="guides-grid">
+          {published.map((guide) => (
+            <a href={`/finops/${guide.fields.Slug}/`} class="guide-card">
+              {guide.fields.Category && (
+                <span class="guide-category">{guide.fields.Category}</span>
+              )}
+              <h3>{guide.fields.Title}</h3>
+              {guide.fields.Description && (
+                <p class="guide-desc">{guide.fields.Description}</p>
+              )}
+              <div class="guide-meta">
+                {guide.fields['Read Time'] && (
+                  <span class="meta-item">⏱ {guide.fields['Read Time']}</span>
+                )}
+                {guide.fields.Difficulty && (
+                  <span
+                    class={`difficulty difficulty--${guide.fields.Difficulty.toLowerCase()}`}
+                  >
+                    {guide.fields.Difficulty}
+                  </span>
+                )}
+              </div>
+            </a>
+          ))}
+        </div>
+      ) : (
+        <div class="empty-state">
+          <p>Guides are on their way — check back soon.</p>
+          <p class="empty-hint">
+            Have an Airtable guide to publish? Set its <strong>Status</strong> field
+            to <strong>Published</strong> and it will appear here on the next build.
+          </p>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <!-- ── CTA strip ─────────────────────────────────────────────────────── -->
+  <section class="cta-strip">
+    <div class="container">
+      <h2>More tools to cut cloud costs</h2>
+      <div class="cta-grid">
+        <a href="/calculators/" class="cta-card">
+          <span class="cta-icon">🧮</span>
+          <h3>Cost Calculators</h3>
+          <p>Estimate and compare cloud costs across AWS, Azure, and GCP.</p>
+        </a>
+        <a href="/comparisons/" class="cta-card">
+          <span class="cta-icon">⚖️</span>
+          <h3>Tool Comparisons</h3>
+          <p>Side-by-side breakdowns of FinOps platforms and cloud services.</p>
+        </a>
+        <a href="/templates/" class="cta-card">
+          <span class="cta-icon">📐</span>
+          <h3>Architecture Templates</h3>
+          <p>Cost-optimized cloud architecture patterns ready to adapt.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  /* ── Shared ────────────────────────────────────────────────────────────── */
+  .container {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  /* ── Hero ──────────────────────────────────────────────────────────────── */
+  .hero {
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%);
+    color: #fff;
+    padding: 5rem 0 4rem;
+    text-align: center;
+  }
+
+  .badge {
+    display: inline-block;
+    background: rgba(55, 138, 221, 0.2);
+    border: 1px solid rgba(55, 138, 221, 0.4);
+    color: #7ec8ff;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.9rem;
+    border-radius: 999px;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(2rem, 5vw, 3.25rem);
+    font-weight: 700;
+    line-height: 1.15;
+    margin: 0 0 1.25rem;
+  }
+
+  .lead {
+    font-size: 1.125rem;
+    color: rgba(255 255 255 / 0.75);
+    max-width: 640px;
+    margin: 0 auto 2rem;
+    line-height: 1.7;
+  }
+
+  .meta-row {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    font-size: 0.875rem;
+    color: rgba(255 255 255 / 0.6);
+    flex-wrap: wrap;
+  }
+
+  /* ── What is FinOps ────────────────────────────────────────────────────── */
+  .what-is {
+    padding: 5rem 0;
+    background: var(--color-bg);
+  }
+
+  .what-is h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+    color: var(--color-text);
+  }
+
+  .intro-text {
+    max-width: var(--max-w-prose);
+    color: var(--color-text-muted);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .pillar {
+    background: var(--color-bg-subtle);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 1.75rem;
+  }
+
+  .pillar-icon {
+    font-size: 1.75rem;
+    display: block;
+    margin-bottom: 0.75rem;
+  }
+
+  .pillar h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--color-text);
+  }
+
+  .pillar p {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* ── Guides ────────────────────────────────────────────────────────────── */
+  .guides {
+    padding: 5rem 0;
+    background: var(--color-bg-subtle);
+  }
+
+  .guides h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: var(--color-text);
+  }
+
+  .guides-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .guide-card {
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+
+  .guide-card:hover {
+    border-color: var(--color-brand);
+    box-shadow: 0 4px 16px rgba(55, 138, 221, 0.12);
+  }
+
+  .guide-category {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-brand);
+  }
+
+  .guide-card h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--color-text);
+    line-height: 1.4;
+    margin: 0;
+  }
+
+  .guide-desc {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin: 0;
+    flex: 1;
+  }
+
+  .guide-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 0.25rem;
+    flex-wrap: wrap;
+  }
+
+  .meta-item {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+  }
+
+  .difficulty {
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+    text-transform: capitalize;
+  }
+
+  .difficulty--beginner {
+    background: #dcfce7;
+    color: #166534;
+  }
+
+  .difficulty--intermediate {
+    background: #fef9c3;
+    color: #854d0e;
+  }
+
+  .difficulty--advanced {
+    background: #fee2e2;
+    color: #991b1b;
+  }
+
+  /* ── Empty state ───────────────────────────────────────────────────────── */
+  .empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    border: 2px dashed var(--color-border);
+    border-radius: 12px;
+    color: var(--color-text-muted);
+  }
+
+  .empty-state p {
+    font-size: 1.05rem;
+    margin: 0 0 0.75rem;
+  }
+
+  .empty-hint {
+    font-size: 0.85rem !important;
+    opacity: 0.7;
+  }
+
+  /* ── CTA strip ─────────────────────────────────────────────────────────── */
+  .cta-strip {
+    padding: 5rem 0;
+    background: var(--color-bg);
+  }
+
+  .cta-strip h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: var(--color-text);
+  }
+
+  .cta-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .cta-card {
+    background: var(--color-bg-subtle);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 1.75rem;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.15s;
+  }
+
+  .cta-card:hover {
+    border-color: var(--color-brand);
+  }
+
+  .cta-icon {
+    font-size: 1.75rem;
+    display: block;
+    margin-bottom: 0.75rem;
+  }
+
+  .cta-card h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+    color: var(--color-text);
+  }
+
+  .cta-card p {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+</style>
