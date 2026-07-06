@@ -1,5 +1,4 @@
 import { defineConfig } from 'astro/config';
-import sitemap from '@astrojs/sitemap';
 import vercel from '@astrojs/vercel/static';
 
 // https://astro.build/config
@@ -9,7 +8,5 @@ export default defineConfig({
   adapter: vercel({
     webAnalytics: { enabled: true },
   }),
-  integrations: [
-    sitemap(),
-  ],
+  // Sitemap added back in Phase 4 (SEO checks) once pages are built
 });
